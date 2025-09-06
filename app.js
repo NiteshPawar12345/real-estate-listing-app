@@ -10,7 +10,6 @@ const ejsMate = require("ejs-mate");
 
 const Listing = require("./models/listing"); // Mongoose model import
 
-
 const listings = require("./routes/listings.js");
 const reviews = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
@@ -292,8 +291,16 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("listings/error.ejs" , {message});
 });
 
-app.get('/', (req, res) => {
-  res.render('listings/index'); 
+
+app.get('/', async (req, res) => {
+  try {
+    const allListings = await Listing.find({});
+    
+    res.render('listings/index', { allListings });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 
