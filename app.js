@@ -292,6 +292,11 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("listings/error.ejs" , {message});
 });
 
+app.get('/', (req, res) => {
+  res.render('index'); // index.ejs render करेगा
+});
+
+
 
 app.get("/test", (req, res) => {
     console.log("User:", req.user);
