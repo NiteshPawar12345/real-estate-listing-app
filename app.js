@@ -293,8 +293,9 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index'); // index.ejs render करेगा
+  res.render('listings/index'); 
 });
+
 
 
 
